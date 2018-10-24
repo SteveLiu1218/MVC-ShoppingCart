@@ -98,3 +98,8 @@ C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\obj\Debug\ShoppingCartP
 C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\obj\Debug\ShoppingCartPractice.csproj.CopyComplete
 C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\obj\Debug\ShoppingCartPractice.dll
 C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\obj\Debug\ShoppingCartPractice.pdb
+C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\bin\EntityFramework.dll
+C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\bin\EntityFramework.SqlServer.dll
+C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\bin\EntityFramework.xml
+C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\bin\EntityFramework.SqlServer.xml
+C:\MVCPractice\ShoppingCartPractice\ShoppingCartPractice\bin\zh-Hant\EntityFramework.resources.dll
