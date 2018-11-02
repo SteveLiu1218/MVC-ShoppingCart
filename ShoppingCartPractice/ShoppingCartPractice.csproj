@@ -161,26 +161,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carts.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Carts.cs">
-      <DependentUpon>Carts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Carts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Carts1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Carts.cs" />
+    <Compile Include="Models\CartsEntities.cs" />
     <Compile Include="Models\ProductLists.cs" />
+    <Compile Include="Models\ViewModel\ProductListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CartsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Carts.mdf" />
@@ -195,27 +181,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Carts.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Carts.edmx</DependentUpon>
-      <LastGenOutput>Carts.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Carts.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Carts.edmx</DependentUpon>
-      <LastGenOutput>Carts1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Models\Carts.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Carts.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Carts.edmx.diagram">
-      <DependentUpon>Carts.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

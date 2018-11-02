@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShoppingCartPractice.Models;
+using ShoppingCartPractice.Models.ViewModel;
+using ShoppingCartPractice.Service;
 
 namespace ShoppingCartPractice.Controllers
 {
     public class ProductListController : Controller
     {
+        private readonly ProductListService productListService;
         //Models.CartsEntities db = new Models.CartsEntities();
         // GET: ProductList
+        public ProductListController()
+        {
+            productListService = new ProductListService();
+        }
         public ActionResult Index()
         {
-            List<Models.Carts> result = new List<Models.Carts>();
-            
-            using (Models.CartsEntities db = new Models.CartsEntities())
-            {
-                result = db.Carts.Select(c => c).ToList();
-            }
-
-            var productLists = Models.ProductLists.GetProductLists();
-            return View(result);
+            IEnumerable<ProductListViewModel> productListViewModel = new List<ProductListViewModel>();
+            productListViewModel = ProductListViewModel.GetData().ToList();
+            return View(productListViewModel);
         }
         public ActionResult Create()
         {
@@ -28,14 +30,15 @@ namespace ShoppingCartPractice.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Models.Carts productList)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ProductListViewModel productListViewModel)
         {
-            using (Models.CartsEntities db = new Models.CartsEntities())
+            if (ModelState.IsValid)
             {
-                db.Carts.Add(productList);
-                db.SaveChanges();
+                productListService.Create(productListViewModel);
+                return RedirectToAction("Index");
             }
-            return View();
+            return View("Index", productListViewModel);
         }
     }
 }

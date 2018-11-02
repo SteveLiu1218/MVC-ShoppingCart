@@ -1,4 +1,4 @@
-﻿@model List<ShoppingCartPractice.Models.Carts>
+﻿@model List<ShoppingCartPractice.Models.ViewModel.ProductListViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,13 +9,28 @@
     <thead>
         <tr>
             <td>
-                編號
+                商品編號
             </td>
             <td>
-                名稱
+                商品名稱
             </td>
             <td>
-                售價
+                商品價格
+            </td>
+            <td>
+                商品描述
+            </td>
+            <td>
+                商品分類編號
+            </td>
+            <td>
+                商品生效日
+            </td>
+            <td>
+                商品預設圖片編號
+            </td>
+            <td>
+                商品庫存量
             </td>
         </tr>
     </thead>
@@ -31,6 +46,21 @@
             </td>
             <td>
                 @item.Price
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.CategoryId
+            </td>
+            <td>
+                @item.PublishDate
+            </td>
+            <td>
+                @item.DefaultImageId
+            </td>
+            <td>
+                @item.Quantity
             </td>
         </tr>
         }
