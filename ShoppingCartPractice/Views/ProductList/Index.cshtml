@@ -5,11 +5,15 @@
 }
 
 <h2>商品列表</h2>
+@if (ViewBag.SuccessMessage != null)
+{
+    @Html.Label("info", (string)ViewBag.ResultMessage, new { @class = "text-danger" })
+}
 <table class="table">
     <thead>
         <tr>
             <td>
-                商品編號
+                操作
             </td>
             <td>
                 商品名稱
@@ -39,7 +43,8 @@
         {
         <tr>
             <td>
-                @item.Id
+                @Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
             </td>
             <td>
                 @item.Name

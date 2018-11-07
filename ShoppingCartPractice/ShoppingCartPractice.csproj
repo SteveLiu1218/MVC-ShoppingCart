@@ -215,6 +215,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ProductList\Index.cshtml" />
     <Content Include="Views\ProductList\Create.cshtml" />
+    <Content Include="Views\ProductList\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -53,8 +53,17 @@ namespace ShoppingCartPractice.Service
             });
             db.SaveChanges();
         }
-        public void Update()
+        public void Update(ProductListViewModel productListViewModel)
         {
+            var carts = new Carts();
+            carts.Id = productListViewModel.Id;
+            carts.Name = productListViewModel.Name;
+            carts.Price = productListViewModel.Price;
+            carts.DefaultImageId = productListViewModel.DefaultImageId;
+            carts.PublishDate = productListViewModel.PublishDate;
+            carts.Quantity = productListViewModel.Quantity;
+            carts.CategoryId = productListViewModel.CategoryId;
+            carts.Description = productListViewModel.Description;
             db.SaveChanges();
         }
         public void Delete()
