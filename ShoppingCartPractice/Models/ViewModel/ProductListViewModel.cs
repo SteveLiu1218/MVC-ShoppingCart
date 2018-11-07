@@ -31,24 +31,6 @@ namespace ShoppingCartPractice.Models.ViewModel
         public int DefaultImageId { get; set; }
 
         public int Quantity { get; set; }
-
-        public static IEnumerable<ProductListViewModel> GetData()
-        {
-            var cartsService = new ProductListService();
-            var resultData = from item in cartsService.GetAll()
-                             select new ProductListViewModel
-                             {
-                                 Id = item.Id,
-                                 Name = item.Name,
-                                 Price = item.Price,
-                                 Description = item.Description,
-                                 CategoryId = item.CategoryId,
-                                 PublishDate = item.PublishDate,
-                                 DefaultImageId = item.DefaultImageId,
-                                 Quantity = item.Quantity                                 
-                             };
-            return resultData;
-        }
     }
     
 }

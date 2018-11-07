@@ -21,7 +21,7 @@ namespace ShoppingCartPractice.Controllers
         public ActionResult Index()
         {
             IEnumerable<ProductListViewModel> productListViewModel = new List<ProductListViewModel>();
-            productListViewModel = ProductListViewModel.GetData().ToList();
+            productListViewModel = productListService.GetViewModelData().ToList();
             return View(productListViewModel);
         }
         public ActionResult Create()
@@ -38,7 +38,7 @@ namespace ShoppingCartPractice.Controllers
                 productListService.Create(productListViewModel);
                 return RedirectToAction("Index");
             }
-            return View("Index", productListViewModel);
+            return View("Create", productListViewModel);
         }
     }
 }

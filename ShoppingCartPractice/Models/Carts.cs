@@ -11,9 +11,11 @@ namespace ShoppingCartPractice.Models
     {
         public Guid Id { get; set; }
 
+        [Required(ErrorMessage = "請填寫商品名稱")]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "請填寫商品價格")]
         public int Price { get; set; }
 
         [StringLength(50)]

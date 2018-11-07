@@ -21,6 +21,23 @@ namespace ShoppingCartPractice.Service
             return db.Carts.ToList();
         }
 
+        public IEnumerable<ProductListViewModel> GetViewModelData()
+        {
+            var cartsService = new ProductListService();
+            var resultData = from item in cartsService.GetAll()
+                             select new ProductListViewModel
+                             {
+                                 Id = item.Id,
+                                 Name = item.Name,
+                                 Price = item.Price,
+                                 Description = item.Description,
+                                 CategoryId = item.CategoryId,
+                                 PublishDate = item.PublishDate,
+                                 DefaultImageId = item.DefaultImageId,
+                                 Quantity = item.Quantity
+                             };
+            return resultData;
+        }
         public void Create(ProductListViewModel productListViewModel)
         {
             db.Carts.Add(new Carts()
