@@ -24,7 +24,7 @@ namespace ShoppingCartPractice.Service
         public IEnumerable<ProductListViewModel> GetViewModelData()
         {
             var cartsService = new ProductListService();
-            var resultData = from item in cartsService.GetAll()
+            var resultData = from item in GetAll()
                              select new ProductListViewModel
                              {
                                  Id = item.Id,
@@ -53,23 +53,26 @@ namespace ShoppingCartPractice.Service
             });
             db.SaveChanges();
         }
-        public void Update(ProductListViewModel productListViewModel)
+        public void Update(Carts carts)
         {
-            var carts = new Carts();
-            carts.Id = productListViewModel.Id;
-            carts.Name = productListViewModel.Name;
-            carts.Price = productListViewModel.Price;
-            carts.DefaultImageId = productListViewModel.DefaultImageId;
-            carts.PublishDate = productListViewModel.PublishDate;
-            carts.Quantity = productListViewModel.Quantity;
-            carts.CategoryId = productListViewModel.CategoryId;
-            carts.Description = productListViewModel.Description;
+            var result = (from s in GetAll()
+                         where s.Id == carts.Id
+                         select s).FirstOrDefault();
+
+            result.Id = carts.Id;
+            result.Name = carts.Name;
+            result.Price = carts.Price;
+            result.DefaultImageId = carts.DefaultImageId;
+            result.PublishDate = carts.PublishDate;
+            result.Quantity = carts.Quantity;
+            result.CategoryId = carts.CategoryId;
+            result.Description = carts.Description;
             db.SaveChanges();
         }
-        public void Delete()
+        public void Delete(Carts carts)
         {
+            db.Carts.Remove(carts);
             db.SaveChanges();
-        }
-        
+        }        
     }
 }

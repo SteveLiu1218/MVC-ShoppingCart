@@ -5,7 +5,7 @@
 }
 
 <h2>商品列表</h2>
-@if (ViewBag.SuccessMessage != null)
+@if (ViewBag.ResultMessage != null)
 {
     @Html.Label("info", (string)ViewBag.ResultMessage, new { @class = "text-danger" })
 }
@@ -44,7 +44,11 @@
         <tr>
             <td>
                 @Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
-                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
+                @using (Html.BeginForm("Delete","ProductList",FormMethod.Post,new { @class="Delete"}))
+                {
+                    @Html.Hidden("id",item.Id)
+                    <input type="submit" value="刪除" class="btn btn-default" />
+                }
             </td>
             <td>
                 @item.Name

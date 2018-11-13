@@ -45,7 +45,7 @@ namespace ShoppingCartPractice.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            var result = (from s in cartsData
+            var result = (from s in productListService.GetAll()
                           where s.Id == id
                           select s).FirstOrDefault();
             if (result == null)
@@ -58,14 +58,35 @@ namespace ShoppingCartPractice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductListViewModel productListViewModel)
+        public ActionResult Edit(Carts carts)
         {
             if (ModelState.IsValid)
             {
-                productListService.Update(productListViewModel);
+                productListService.Update(carts);
+                TempData["ResultMessage"] = string.Format("商品 [{0}] 修改成功", carts.Name);
                 return RedirectToAction("Index");
             }
-            return View(productListViewModel);
+            return View(carts);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Guid id)
+        {
+            var result = (from s in productListService.GetAll()
+                          where s.Id == id
+                          select s).FirstOrDefault();
+            if (result == null)
+            {
+                TempData["ResultMessage"] = "沒有這筆資料，無法做刪除的操作";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                productListService.Delete(result);
+                TempData["ResultMessage"] = string.Format("商品 [{0}] 刪除成功", result.Name);
+                return RedirectToAction("Index");
+            }
+            return View(result);
         }
     }
 }
