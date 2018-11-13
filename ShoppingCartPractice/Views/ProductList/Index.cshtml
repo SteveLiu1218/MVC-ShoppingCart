@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            <td>
+            <td colspan="2">
                 操作
             </td>
             <td>
@@ -44,9 +44,11 @@
         <tr>
             <td>
                 @Html.ActionLink("編輯", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
-                @using (Html.BeginForm("Delete","ProductList",FormMethod.Post,new { @class="Delete"}))
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "ProductList", FormMethod.Post, new { @class = "Delete" }))
                 {
-                    @Html.Hidden("id",item.Id)
+                    @Html.HiddenFor(m => item.Id)
                     <input type="submit" value="刪除" class="btn btn-default" />
                 }
             </td>

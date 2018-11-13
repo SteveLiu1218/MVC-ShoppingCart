@@ -13,6 +13,7 @@ namespace ShoppingCartPractice.Models
         }
 
         public virtual DbSet<Carts> Carts { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

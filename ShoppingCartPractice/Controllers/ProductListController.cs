@@ -6,16 +6,19 @@ using System.Web.Mvc;
 using ShoppingCartPractice.Models;
 using ShoppingCartPractice.Models.ViewModel;
 using ShoppingCartPractice.Service;
+using ShoppingCartPractice.Models.Repository;
 
 namespace ShoppingCartPractice.Controllers
 {
     public class ProductListController : Controller
     {
         private readonly ProductListService productListService;
+        private readonly ProductListRepository productListRepository;
         private readonly IEnumerable<Carts> cartsData;
         public ProductListController()
         {
             productListService = new ProductListService();
+            productListRepository = new ProductListRepository();
             cartsData = productListService.GetAll();
         }
         public ActionResult Index()
@@ -36,7 +39,7 @@ namespace ShoppingCartPractice.Controllers
         {
             if (ModelState.IsValid)
             {
-                productListService.Create(productListViewModel);
+                productListRepository.Create(productListViewModel);
                 TempData["ResultMessage"] = string.Format("商品 [{0}] 建立成功", productListViewModel.Name);
                 return RedirectToAction("Index");
             }
@@ -62,7 +65,7 @@ namespace ShoppingCartPractice.Controllers
         {
             if (ModelState.IsValid)
             {
-                productListService.Update(carts);
+                productListRepository.Update(carts);
                 TempData["ResultMessage"] = string.Format("商品 [{0}] 修改成功", carts.Name);
                 return RedirectToAction("Index");
             }
@@ -82,11 +85,10 @@ namespace ShoppingCartPractice.Controllers
             }
             else
             {
-                productListService.Delete(result);
+                productListRepository.Delete(result);
                 TempData["ResultMessage"] = string.Format("商品 [{0}] 刪除成功", result.Name);
                 return RedirectToAction("Index");
             }
-            return View(result);
         }
     }
 }

@@ -2,42 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ShoppingCartPractice.Models;
 using ShoppingCartPractice.Models.ViewModel;
+using ShoppingCartPractice.Service;
 
-namespace ShoppingCartPractice.Service
+namespace ShoppingCartPractice.Models.Repository
 {
-    public class ProductListService
+    public class ProductListRepository
     {
-        private readonly CartsEntities db;
+        public readonly CartsEntities db;
 
-        public ProductListService()
+        public ProductListRepository()
         {
             db = new CartsEntities();
         }
 
-        public IEnumerable<Carts> GetAll()
-        {
-            return db.Carts.ToList();
-        }
-
-        public IEnumerable<ProductListViewModel> GetViewModelData()
-        {
-            var cartsService = new ProductListService();
-            var resultData = from item in GetAll()
-                             select new ProductListViewModel
-                             {
-                                 Id = item.Id,
-                                 Name = item.Name,
-                                 Price = item.Price,
-                                 Description = item.Description,
-                                 CategoryId = item.CategoryId,
-                                 PublishDate = item.PublishDate,
-                                 DefaultImageId = item.DefaultImageId,
-                                 Quantity = item.Quantity
-                             };
-            return resultData;
-        }
         public void Create(ProductListViewModel productListViewModel)
         {
             db.Carts.Add(new Carts()
@@ -55,9 +33,9 @@ namespace ShoppingCartPractice.Service
         }
         public void Update(Carts carts)
         {
-            var result = (from s in GetAll()
-                         where s.Id == carts.Id
-                         select s).FirstOrDefault();
+            var result = (from s in db.Carts
+                          where s.Id == carts.Id
+                          select s).FirstOrDefault();
 
             result.Id = carts.Id;
             result.Name = carts.Name;
@@ -73,6 +51,6 @@ namespace ShoppingCartPractice.Service
         {
             db.Carts.Remove(carts);
             db.SaveChanges();
-        }        
+        }
     }
 }
