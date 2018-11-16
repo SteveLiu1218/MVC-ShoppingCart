@@ -18,6 +18,7 @@ namespace ShoppingCartPractice.Models.Repository
             db.Users.Add(new Users()
             {
                 Id = Guid.NewGuid(),
+                UsrName = registerViewModel.UsrName,
                 Email = registerViewModel.Email,
                 Password = registerViewModel.Password,
                 ConfirmPassword = registerViewModel.Password

@@ -21,5 +21,10 @@ namespace ShoppingCartPractice.Models
         [Required]
         [StringLength(50)]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string UsrName { get; set; }
+
     }
 }

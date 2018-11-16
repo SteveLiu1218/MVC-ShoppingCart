@@ -1,7 +1,7 @@
 ﻿<ul class="nav navbar-nav navbar-right">
     @if (Session["LoginSuccess"] == "Success")
     {        
-    <li>@Html.ActionLink("Hello "+ Session["LoginUsr"] +"登出", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoff" })</li>   
+    <li>@Html.ActionLink("Hello "+ Session["LoginUsr"] +" 登出", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoff" })</li>   
     }
     else
     {

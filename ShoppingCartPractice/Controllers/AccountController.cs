@@ -51,13 +51,14 @@ namespace ShoppingCartPractice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
+            string UsrName = "";
             if (ModelState.IsValid)
             {
-                if (accountService.CheckAccountData(loginViewModel))
+                if (accountService.CheckAccountData(loginViewModel,ref UsrName))
                 {
                     //登入成功
                     Session["LoginSuccess"] = "Success";
-                    Session["LoginUsr"] = loginViewModel.Email;
+                    Session["LoginUsr"] = UsrName;
                     return RedirectToAction("Index", "Home");
                 }
             }

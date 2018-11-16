@@ -9,6 +9,11 @@ namespace ShoppingCartPractice.Models.ViewModel
     public class RegisterViewModel
     {
         public Guid Id { get; set; }
+
+        [Required]
+        [Display(Name = "暱稱")]
+        public string UsrName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "電子郵件")]
@@ -24,5 +29,6 @@ namespace ShoppingCartPractice.Models.ViewModel
         [Display(Name = "確認密碼")]
         [Compare("Password", ErrorMessage = "密碼和確認密碼不相符。")]
         public string ConfirmPassword { get; set; }
+
     }
 }

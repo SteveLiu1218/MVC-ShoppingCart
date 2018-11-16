@@ -19,13 +19,14 @@ namespace ShoppingCartPractice.Service
         {
             return registerRepository.db.Users.ToList();
         }
-        public bool CheckAccountData(LoginViewModel loginViewModel)
+        public bool CheckAccountData(LoginViewModel loginViewModel,ref string UsrName)
         {
             var result = (from s in GetUsers()
                           where loginViewModel.Email == s.Email
                           select s).FirstOrDefault();
             if (result != null)
             {
+                UsrName = result.UsrName;
                 return true;
             }
             return false;
