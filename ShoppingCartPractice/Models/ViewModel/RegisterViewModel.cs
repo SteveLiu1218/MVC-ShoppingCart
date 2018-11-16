@@ -8,6 +8,7 @@ namespace ShoppingCartPractice.Models.ViewModel
 {
     public class RegisterViewModel
     {
+        public Guid Id { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "電子郵件")]

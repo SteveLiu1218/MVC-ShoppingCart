@@ -10,7 +10,7 @@ namespace ShoppingCartPractice.Service
 {
     public class AccountService
     {
-        private readonly RegisterRepository registerRepository;
+        private RegisterRepository registerRepository;
         public AccountService()
         {
             registerRepository = new RegisterRepository();
@@ -24,7 +24,10 @@ namespace ShoppingCartPractice.Service
             var result = (from s in GetUsers()
                           where loginViewModel.Email == s.Email
                           select s).FirstOrDefault();
-            
+            if (result != null)
+            {
+                return true;
+            }
             return false;
         }
     }

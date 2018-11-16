@@ -6,18 +6,26 @@ using System.Web.Mvc;
 using ShoppingCartPractice.Models;
 using ShoppingCartPractice.Models.ViewModel;
 using ShoppingCartPractice.Models.Repository;
+using ShoppingCartPractice.Service;
 
 namespace ShoppingCartPractice.Controllers
 {
     public class AccountController : Controller
     {
         private RegisterRepository registerRepository;
+        private AccountService accountService;
         public AccountController()
         {
             registerRepository = new RegisterRepository();
+            accountService = new AccountService();
         }
-        // GET: Account
-        public ActionResult Index()
+        //// GET: Account
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Register()
         {
             return View();
         }
@@ -29,14 +37,38 @@ namespace ShoppingCartPractice.Controllers
             if (ModelState.IsValid)
             {
                 registerRepository.Create(registerViewModel);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
-            return View();
+            return View(registerViewModel);
         }
+        
         public ActionResult Login()
         {
-            
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (accountService.CheckAccountData(loginViewModel))
+                {
+                    //登入成功
+                    Session["LoginSuccess"] = "Success";
+                    Session["LoginUsr"] = loginViewModel.Email;
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(loginViewModel);
+        }
+
+        public ActionResult LogOff()
+        {
+            Session["LoginSuccess"] = "";
+            Session["LoginUsr"] = "";
+            return RedirectToAction("Index", "Home");
         }
     }
 }
