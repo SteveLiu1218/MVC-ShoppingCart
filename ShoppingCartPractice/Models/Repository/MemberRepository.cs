@@ -6,10 +6,10 @@ using ShoppingCartPractice.Models.ViewModel;
 
 namespace ShoppingCartPractice.Models.Repository
 {
-    public class RegisterRepository
+    public class MemberRepository
     {
         public readonly CartsEntities db;
-        public RegisterRepository()
+        public MemberRepository()
         {
             db = new CartsEntities();
         }
@@ -24,6 +24,19 @@ namespace ShoppingCartPractice.Models.Repository
                 ConfirmPassword = registerViewModel.Password
             });
             db.SaveChanges();
+        }
+        public void Update(ManageMemberViewModel manageMemberViewModel)
+        {
+            var userResult =  (from s in db.Users.ToList()
+                              where s.Id == manageMemberViewModel.Id
+                             select s).FirstOrDefault();
+            if (userResult != null)
+            {
+                userResult.Password = manageMemberViewModel.Password;
+                userResult.UsrName = manageMemberViewModel.UsrName;                
+            }
+            db.SaveChanges();
+                             
         }
     }
 }

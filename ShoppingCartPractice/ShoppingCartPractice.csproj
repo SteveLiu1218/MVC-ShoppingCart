@@ -165,9 +165,10 @@
     <Compile Include="Models\Carts.cs" />
     <Compile Include="Models\CartsEntities.cs" />
     <Compile Include="Models\Repository\ProductListRepository.cs" />
-    <Compile Include="Models\Repository\RegisterRepository.cs" />
+    <Compile Include="Models\Repository\MemberRepository.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\ManageMemberViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductListViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -225,6 +226,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ManageMember.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

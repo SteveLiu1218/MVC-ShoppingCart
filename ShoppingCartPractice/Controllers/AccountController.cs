@@ -12,11 +12,11 @@ namespace ShoppingCartPractice.Controllers
 {
     public class AccountController : Controller
     {
-        private RegisterRepository registerRepository;
+        private MemberRepository memberRepository;
         private AccountService accountService;
         public AccountController()
         {
-            registerRepository = new RegisterRepository();
+            memberRepository = new MemberRepository();
             accountService = new AccountService();
         }
         //// GET: Account
@@ -24,6 +24,23 @@ namespace ShoppingCartPractice.Controllers
         //{
         //    return View();
         //}
+        public ActionResult ManageMember()
+        {
+            IEnumerable<ManageMemberViewModel> manageMemberViewModel = new List<ManageMemberViewModel>();
+            manageMemberViewModel = accountService.GetManageMemberViewModels().ToList();
+            return View(manageMemberViewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageMember(ManageMemberViewModel managerMemberViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                memberRepository.Update(managerMemberViewModel);
+                return RedirectToAction("ManageMember", "Account");
+            }
+            return View(managerMemberViewModel);
+        }
 
         public ActionResult Register()
         {
@@ -36,7 +53,7 @@ namespace ShoppingCartPractice.Controllers
         {
             if (ModelState.IsValid)
             {
-                registerRepository.Create(registerViewModel);
+                memberRepository.Create(registerViewModel);
                 return RedirectToAction("Index","Home");
             }
             return View(registerViewModel);

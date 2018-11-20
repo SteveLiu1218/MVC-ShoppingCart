@@ -10,14 +10,25 @@ namespace ShoppingCartPractice.Service
 {
     public class AccountService
     {
-        private RegisterRepository registerRepository;
+        private MemberRepository registerRepository;
         public AccountService()
         {
-            registerRepository = new RegisterRepository();
+            registerRepository = new MemberRepository();
         }
         public IEnumerable<Users> GetUsers()
         {
             return registerRepository.db.Users.ToList();
+        }
+        public IEnumerable<ManageMemberViewModel> GetManageMemberViewModels()
+        {
+            var resultData = from item in GetUsers()
+                             select new ManageMemberViewModel
+                             {
+                                 Id = item.Id,
+                                 UsrName = item.UsrName,
+                                 Password = item.Password
+                             };
+            return resultData;
         }
         public bool CheckAccountData(LoginViewModel loginViewModel,ref string UsrName)
         {
