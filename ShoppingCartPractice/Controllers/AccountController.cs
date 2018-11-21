@@ -24,20 +24,38 @@ namespace ShoppingCartPractice.Controllers
         //{
         //    return View();
         //}
-        public ActionResult ManageMember()
+
+        public ActionResult MemberList()
         {
-            IEnumerable<ManageMemberViewModel> manageMemberViewModel = new List<ManageMemberViewModel>();
+            IEnumerable<MemberListViewModel> manageMemberViewModel = new List<MemberListViewModel>();
             manageMemberViewModel = accountService.GetManageMemberViewModels().ToList();
             return View(manageMemberViewModel);
         }
+        public ActionResult EditMember(Guid id)
+        {
+            var result = (from s in accountService.GetUsers()
+                          where s.Id == id
+                          select new MemberListViewModel()
+                          {
+                              Id = s.Id,                              
+                              Password = s.Password,
+                              ConfirmPassword = s.ConfirmPassword,
+                              UsrName = s.UsrName
+                          }).FirstOrDefault();
+            if (result == null)
+            {
+                RedirectToAction("MemberList");
+            }
+            return View(result);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManageMember(ManageMemberViewModel managerMemberViewModel)
+        public ActionResult EditMember(MemberListViewModel managerMemberViewModel)
         {
             if (ModelState.IsValid)
             {
                 memberRepository.Update(managerMemberViewModel);
-                return RedirectToAction("ManageMember", "Account");
+                return RedirectToAction("MemberList", "Account");
             }
             return View(managerMemberViewModel);
         }

@@ -19,10 +19,10 @@ namespace ShoppingCartPractice.Service
         {
             return registerRepository.db.Users.ToList();
         }
-        public IEnumerable<ManageMemberViewModel> GetManageMemberViewModels()
+        public IEnumerable<MemberListViewModel> GetManageMemberViewModels()
         {
             var resultData = from item in GetUsers()
-                             select new ManageMemberViewModel
+                             select new MemberListViewModel
                              {
                                  Id = item.Id,
                                  UsrName = item.UsrName,
