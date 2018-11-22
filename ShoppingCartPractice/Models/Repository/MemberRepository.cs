@@ -25,19 +25,27 @@ namespace ShoppingCartPractice.Models.Repository
             });
             db.SaveChanges();
         }
-        public void Update(MemberListViewModel manageMemberViewModel)
+        public void Update(MemberListViewModel memberListViewModel)
         {
             var userResult =  (from s in db.Users.ToList()
-                              where s.Id == manageMemberViewModel.Id
+                              where s.Id == memberListViewModel.Id
                              select s).FirstOrDefault();
             if (userResult != null)
             {                
-                userResult.UsrName = manageMemberViewModel.UsrName;
-                userResult.Password = manageMemberViewModel.Password;
-                userResult.ConfirmPassword = manageMemberViewModel.ConfirmPassword;
+                userResult.UsrName = memberListViewModel.UsrName;
+                userResult.Password = memberListViewModel.Password;
+                userResult.ConfirmPassword = memberListViewModel.ConfirmPassword;
+                db.SaveChanges();
+            }                                      
+        }
+        public void Delete(Users users)
+        {
+            if (users != default(Models.Users))
+            {
+                db.Entry(users).State = System.Data.Entity.EntityState.Deleted;
+                db.Users.Remove(users);
+                db.SaveChanges();
             }
-            db.SaveChanges();
-                             
         }
     }
 }

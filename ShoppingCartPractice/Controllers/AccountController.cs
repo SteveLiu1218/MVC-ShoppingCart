@@ -27,9 +27,9 @@ namespace ShoppingCartPractice.Controllers
 
         public ActionResult MemberList()
         {
-            IEnumerable<MemberListViewModel> manageMemberViewModel = new List<MemberListViewModel>();
-            manageMemberViewModel = accountService.GetManageMemberViewModels().ToList();
-            return View(manageMemberViewModel);
+            IEnumerable<MemberListViewModel> memberListViewModel = new List<MemberListViewModel>();
+            memberListViewModel = accountService.GetManageMemberViewModels().ToList();
+            return View(memberListViewModel);
         }
         public ActionResult EditMember(Guid id)
         {
@@ -50,14 +50,31 @@ namespace ShoppingCartPractice.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMember(MemberListViewModel managerMemberViewModel)
+        public ActionResult EditMember(MemberListViewModel memberListViewModel)
         {
             if (ModelState.IsValid)
             {
-                memberRepository.Update(managerMemberViewModel);
+                memberRepository.Update(memberListViewModel);
                 return RedirectToAction("MemberList", "Account");
             }
-            return View(managerMemberViewModel);
+            return View(memberListViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMember(Guid id)
+        {
+            var result = (from s in accountService.GetUsers()
+                          where s.Id == id
+                          select s).FirstOrDefault();
+            if (result == null)
+            {
+                return RedirectToAction("MemberList");
+            }
+            else
+            {
+                memberRepository.Delete(result);
+                return RedirectToAction("MemberList");
+            }
         }
 
         public ActionResult Register()

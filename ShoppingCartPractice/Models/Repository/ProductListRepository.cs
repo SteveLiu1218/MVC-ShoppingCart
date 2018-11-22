@@ -49,8 +49,12 @@ namespace ShoppingCartPractice.Models.Repository
         }
         public void Delete(Carts carts)
         {
-            db.Carts.Remove(carts);
-            db.SaveChanges();
+            if (carts != default(Models.Carts))
+            {
+                db.Entry(carts).State = System.Data.Entity.EntityState.Deleted;
+                db.Carts.Remove(carts);
+                db.SaveChanges();
+            }
         }
     }
 }
