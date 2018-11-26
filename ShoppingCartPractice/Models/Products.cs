@@ -6,7 +6,7 @@ namespace ShoppingCartPractice.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Carts
+    public partial class Products
     {
         public Guid Id { get; set; }
 
@@ -27,5 +27,7 @@ namespace ShoppingCartPractice.Models
         public int DefaultImageId { get; set; }
 
         public int Quantity { get; set; }
+
+        public string DefaultImageURL { get; set; }
     }
 }

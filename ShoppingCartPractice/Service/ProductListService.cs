@@ -17,9 +17,9 @@ namespace ShoppingCartPractice.Service
             cartsRepository = new ProductListRepository();
         }
 
-        public IEnumerable<Carts> GetAll()
+        public IEnumerable<Products> GetAll()
         {
-            return cartsRepository.db.Carts.ToList();
+            return cartsRepository.db.Products.ToList();
         }
 
         public IEnumerable<ProductListViewModel> GetViewModelData()
@@ -34,7 +34,8 @@ namespace ShoppingCartPractice.Service
                                  CategoryId = item.CategoryId,
                                  PublishDate = item.PublishDate,
                                  DefaultImageId = item.DefaultImageId,
-                                 Quantity = item.Quantity
+                                 Quantity = item.Quantity,                                 
+                                 DefaultImageURL = item.DefaultImageURL
                              };
             return resultData;
         }

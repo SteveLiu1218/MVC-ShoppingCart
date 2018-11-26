@@ -41,6 +41,10 @@ namespace ShoppingCartPractice.Models.ViewModel
         [Required(ErrorMessage = "請填寫商品數量")]
         [Display(Name = "商品數量")]
         public int Quantity { get; set; }
+
+        [Required(ErrorMessage = "請附上圖片URL")]
+        [Display(Name = "圖片URL")]
+        public string DefaultImageURL { get; set; }
     }
     
 }

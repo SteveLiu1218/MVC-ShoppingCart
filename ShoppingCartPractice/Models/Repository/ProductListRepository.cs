@@ -18,7 +18,7 @@ namespace ShoppingCartPractice.Models.Repository
 
         public void Create(ProductListViewModel productListViewModel)
         {
-            db.Carts.Add(new Carts()
+            db.Products.Add(new Products()
             {
                 Id = Guid.NewGuid(),
                 Name = productListViewModel.Name,
@@ -27,32 +27,35 @@ namespace ShoppingCartPractice.Models.Repository
                 PublishDate = productListViewModel.PublishDate,
                 Quantity = productListViewModel.Quantity,
                 CategoryId = productListViewModel.CategoryId,
-                Description = productListViewModel.Description
+                Description = productListViewModel.Description,
+                DefaultImageURL = productListViewModel.DefaultImageURL
+                
             });
             db.SaveChanges();
         }
-        public void Update(Carts carts)
+        public void Update(Products products)
         {
-            var result = (from s in db.Carts
-                          where s.Id == carts.Id
+            var result = (from s in db.Products
+                          where s.Id == products.Id
                           select s).FirstOrDefault();
 
-            result.Id = carts.Id;
-            result.Name = carts.Name;
-            result.Price = carts.Price;
-            result.DefaultImageId = carts.DefaultImageId;
-            result.PublishDate = carts.PublishDate;
-            result.Quantity = carts.Quantity;
-            result.CategoryId = carts.CategoryId;
-            result.Description = carts.Description;
+            result.Id = products.Id;
+            result.Name = products.Name;
+            result.Price = products.Price;
+            result.DefaultImageId = products.DefaultImageId;
+            result.PublishDate = products.PublishDate;
+            result.Quantity = products.Quantity;
+            result.CategoryId = products.CategoryId;
+            result.Description = products.Description;
+            result.DefaultImageURL = products.DefaultImageURL;
             db.SaveChanges();
         }
-        public void Delete(Carts carts)
+        public void Delete(Products products)
         {
-            if (carts != default(Models.Carts))
+            if (products != default(Models.Products))
             {
-                db.Entry(carts).State = System.Data.Entity.EntityState.Deleted;
-                db.Carts.Remove(carts);
+                db.Entry(products).State = System.Data.Entity.EntityState.Deleted;
+                db.Products.Remove(products);
                 db.SaveChanges();
             }
         }

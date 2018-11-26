@@ -14,12 +14,12 @@ namespace ShoppingCartPractice.Controllers
     {
         private readonly ProductListService productListService;
         private readonly ProductListRepository productListRepository;
-        private readonly IEnumerable<Carts> cartsData;
+        private readonly IEnumerable<Products> productsData;
         public ProductListController()
         {
             productListService = new ProductListService();
             productListRepository = new ProductListRepository();
-            cartsData = productListService.GetAll();
+            productsData = productListService.GetAll();
         }
         public ActionResult Index()
         {
@@ -61,15 +61,15 @@ namespace ShoppingCartPractice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Carts carts)
+        public ActionResult Edit(Products products)
         {
             if (ModelState.IsValid)
             {
-                productListRepository.Update(carts);
-                TempData["ResultMessage"] = string.Format("商品 [{0}] 修改成功", carts.Name);
+                productListRepository.Update(products);
+                TempData["ResultMessage"] = string.Format("商品 [{0}] 修改成功", products.Name);
                 return RedirectToAction("Index");
             }
-            return View(carts);
+            return View(products);
         }
 
         [HttpPost]
