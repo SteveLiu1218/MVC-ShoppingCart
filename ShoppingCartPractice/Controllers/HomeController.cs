@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShoppingCartPractice.Service;
 
 namespace ShoppingCartPractice.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ProductListService productListService;
+        public HomeController()
+        {
+            productListService = new ProductListService();
+        }
         public ActionResult Index()
         {
-            return View();
+            var resultData = productListService.GetAll().ToList();
+            return View(resultData);
         }
 
         public ActionResult About()
