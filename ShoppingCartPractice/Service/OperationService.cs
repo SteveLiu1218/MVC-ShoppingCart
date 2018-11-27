@@ -15,7 +15,7 @@ namespace ShoppingCartPractice.Service
             if (HttpContext.Current != null)
             {
                 if (HttpContext.Current.Session["Cart"] == null)
-                {
+                {                    
                     var order = new Cart();
                     HttpContext.Current.Session["Cart"] = order;
                 }

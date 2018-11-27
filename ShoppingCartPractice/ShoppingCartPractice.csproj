@@ -232,6 +232,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\MemberList.cshtml" />
     <Content Include="Views\Account\EditMember.cshtml" />
+    <Content Include="Views\Shared\_CartPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
