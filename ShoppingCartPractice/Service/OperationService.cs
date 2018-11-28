@@ -27,6 +27,5 @@ namespace ShoppingCartPractice.Service
             }
 
         }
-
     }
 }

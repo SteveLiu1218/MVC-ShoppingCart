@@ -2,15 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace ShoppingCartPractice.Models
 {
-    public class Cart
+    public class Cart:IEnumerable<CartItem>
     {
-        public List<CartItem> cartItems { get; set; }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.cartItems.GetEnumerator();
+        }
+        IEnumerator<CartItem> IEnumerable<CartItem>.GetEnumerator()
+        {
+            return this.cartItems.GetEnumerator();
+        }
+
+        private List<CartItem> cartItems;
         public Cart()
         {
-            this.cartItems = new List<CartItem>();
+            this.cartItems = new List<CartItem>();            
+        }
+        public int Count
+        {
+            get
+            {
+                return this.cartItems.Count;
+            }
         }
         public decimal TotalAmount {
             get
@@ -22,6 +39,44 @@ namespace ShoppingCartPractice.Models
                 }
                 return totalAmount;
             }
+        }
+
+        public bool AddProduct(Guid productId)
+        {
+            //先判斷相同Id的CartItem是否已經存在購物車內
+            //如果有購物車數量+1
+            var findItem = this.cartItems
+                            .Where(s => s.Id == productId)
+                            .Select(s => s)
+                            .FirstOrDefault();            
+            CartsEntities db = new CartsEntities();
+            var product = (from s in db.Products
+                           where s.Id == productId
+                           select s).FirstOrDefault();
+            if (product != default(Products))
+            {
+                this.AddProduct(product);
+            }
+            else
+            {   //存在購物車內，則將商品數量累加
+                findItem.Quantity += 1;
+            }
+            return true;
+        }
+        //新增一筆Product，使用Product物件
+        public bool AddProduct(Products product)
+        {
+            //將Product轉為CartItem
+            var cartItem = new CartItem()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Quantity = 1
+            };
+            //加進購物車
+            this.cartItems.Add(cartItem);
+            return true;
         }
     }
 }
