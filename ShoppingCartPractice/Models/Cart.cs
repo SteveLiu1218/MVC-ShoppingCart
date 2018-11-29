@@ -76,5 +76,15 @@ namespace ShoppingCartPractice.Models
             //加進購物車
             this.cartItems.Add(cartItem);            
         }
+        public void RemoveProduct(Guid id)
+        {
+            var findItem = this.cartItems
+                           .Where(s => s.Id == id)
+                           .Select(s => s).FirstOrDefault();
+            if (findItem != null)
+            {
+                this.cartItems.Remove(findItem);
+            }
+        }
     }
 }

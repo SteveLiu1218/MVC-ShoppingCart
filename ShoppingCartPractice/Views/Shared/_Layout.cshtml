@@ -64,4 +64,14 @@
                 $('li#Cart').html(msg);
             });
     }
+    function RemoveFromCart(productId) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RemoveFromCart","Home")',
+            data: { id: productId }
+        })
+            .done(function (msg) {
+                $('li#Cart').html(msg);
+            });
+    }
 </script>
