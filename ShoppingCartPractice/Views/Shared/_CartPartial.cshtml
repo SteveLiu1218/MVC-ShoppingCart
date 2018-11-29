@@ -7,10 +7,18 @@
     <span class="caret"></span>
 </a>
 <ul class="dropdown-menu" role="menu" aria-labelledby="CartDropDown">
-    @foreach (var cartitem in currentCart)
-    {        
-        <li><a>@cartitem.Name <span>@cartitem.Price 元 X @cartitem.Quantity </span></a></li>
+    @if (currentCart.Count > 0)
+    {
+        foreach (var cartitem in currentCart)
+        {
+            <li><a>@cartitem.Name <span>@cartitem.Price 元 X @cartitem.Quantity </span></a></li>
+        }
+        <li class="divider"></li>
+        <li><a class="btn btn-default text-center" href="#">結帳去</a></li>
     }
-    <li class="divider"></li>
-    <li><a class="btn btn-default text-center" href="#">結帳去</a></li>
+    else
+    {
+        <li><a class="btn btn-default text-center" href="#">無結帳商品</a></li>
+    }
+
 </ul>

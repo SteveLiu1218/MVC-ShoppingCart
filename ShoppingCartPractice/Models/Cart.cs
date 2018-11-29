@@ -41,7 +41,7 @@ namespace ShoppingCartPractice.Models
             }
         }
 
-        public bool AddProduct(Guid productId)
+        public void AddProduct(Guid productId)
         {
             //先判斷相同Id的CartItem是否已經存在購物車內
             //如果有購物車數量+1
@@ -61,10 +61,9 @@ namespace ShoppingCartPractice.Models
             {   //存在購物車內，則將商品數量累加
                 findItem.Quantity += 1;
             }
-            return true;
         }
         //新增一筆Product，使用Product物件
-        public bool AddProduct(Products product)
+        public void AddProduct(Products product)
         {
             //將Product轉為CartItem
             var cartItem = new CartItem()
@@ -75,8 +74,7 @@ namespace ShoppingCartPractice.Models
                 Quantity = 1
             };
             //加進購物車
-            this.cartItems.Add(cartItem);
-            return true;
+            this.cartItems.Add(cartItem);            
         }
     }
 }
