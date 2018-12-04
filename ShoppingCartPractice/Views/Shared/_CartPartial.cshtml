@@ -13,15 +13,33 @@
         {
             <li class="col-xs-12">
                 <span class="col-xs-10">@cartitem.Name  @cartitem.Price 元 X @cartitem.Quantity</span>
-                <span class="btn btn-danger col-xs-2" onclick="RemoveFromCart('@cartitem.Id')" >X</span>
+                <span class="btn btn-danger col-xs-2" onclick="RemoveFromCart('@cartitem.Id')">X</span>
             </li>
         }
         <li class="divider"></li>
-        <li><a class="btn btn-default text-center" href="#">結帳去</a></li>
+        <li>
+            <div id="CartButtons" class="col-xs-12">
+                <a class="btn btn-success text-center col-xs-5" href="#">結帳去</a>
+                <a class="btn btn-danger text-center col-xs-5" onclick="ClearCart()" href="#">清空</a>
+            </div>
+        </li>
     }
     else
     {
-        <li><a class="btn btn-default text-center" href="#">無結帳商品</a></li>
+        <li><a class="btn btn-default text-center" href="#">尚無商品</a></li>
     }
-
 </ul>
+<script type="text/javascript">
+    function ClearCart() {
+        $.ajax({
+            type: 'POST',
+            //到HomeAddToCart 所以Return 整個Partial出來 給下面.done
+            url: '@Url.Action("ClearCart", "Home")',
+            //id 是因為上面URL對應到的 ActionResult 的參數名稱
+            data: { }
+            })
+            .done(function (msg) {
+            $('li#Cart').html(msg);
+            });
+            }
+</script>

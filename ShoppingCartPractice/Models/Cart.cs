@@ -86,5 +86,10 @@ namespace ShoppingCartPractice.Models
                 this.cartItems.Remove(findItem);
             }
         }
+        public void ClearProduct()
+        {
+            this.cartItems.Clear();
+
+        }
     }
 }

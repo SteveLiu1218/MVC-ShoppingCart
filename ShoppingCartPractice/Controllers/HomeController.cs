@@ -45,5 +45,11 @@ namespace ShoppingCartPractice.Controllers
             cart.RemoveProduct(id);
             return PartialView("_CartPartial");
         }
+        public ActionResult ClearCart()
+        {
+            var cart = OperationService.GetCurrentCart();
+            cart.ClearProduct();
+            return PartialView("_CartPartial");
+        }
     }
 }

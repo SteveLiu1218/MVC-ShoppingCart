@@ -27,3 +27,10 @@ textarea {
         width:250px;
     }
 }
+#CartButtons {
+    display: inline-block;
+}
+
+#CartButtons > a {
+    margin: 6px;
+}
