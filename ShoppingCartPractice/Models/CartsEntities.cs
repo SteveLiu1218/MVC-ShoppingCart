@@ -14,6 +14,8 @@ namespace ShoppingCartPractice.Models
 
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

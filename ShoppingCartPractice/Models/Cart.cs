@@ -53,7 +53,7 @@ namespace ShoppingCartPractice.Models
             var product = (from s in db.Products
                            where s.Id == productId
                            select s).FirstOrDefault();
-            if (product != default(Products))
+            if (findItem == null)
             {
                 this.AddProduct(product);
             }
@@ -71,7 +71,8 @@ namespace ShoppingCartPractice.Models
                 Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
-                Quantity = 1
+                Quantity = 1,
+                DefaultImageURL = product.DefaultImageURL
             };
             //加進購物車
             this.cartItems.Add(cartItem);            

@@ -5,18 +5,14 @@ using System.Web;
 
 namespace ShoppingCartPractice.Models
 {
-    public class CartItem
+    public class OrderDetails
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+        public int OrderId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public decimal Amount {
-            get {
-                return this.Price * this.Quantity;
-            }
-        }
-        public string DefaultImageURL { get; set; }
 
+        public virtual Order Order { get; set; }
     }
 }
