@@ -26,5 +26,7 @@ namespace ShoppingCartPractice.Models
         public System.Data.Entity.DbSet<ShoppingCartPractice.Models.ViewModel.LoginViewModel> LoginViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ShoppingCartPractice.Models.ViewModel.MemberListViewModel> ManageMemberViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ShoppingCartPractice.Models.ViewModel.ManageOrderViewModel> ManageOrderViewModels { get; set; }
     }
 }
