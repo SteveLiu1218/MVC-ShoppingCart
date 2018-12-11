@@ -104,13 +104,15 @@ namespace ShoppingCartPractice.Controllers
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             string UsrName = "";
+            Guid Id = new Guid();
             if (ModelState.IsValid)
             {
-                if (accountService.CheckAccountData(loginViewModel,ref UsrName))
+                if (accountService.CheckAccountData(loginViewModel,ref UsrName,ref Id))
                 {                    
                     //登入成功
                     Session["LoginSuccess"] = "Success";
                     Session["LoginUsr"] = UsrName;
+                    Session["LoginUsrId"] = Id;
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -121,6 +123,7 @@ namespace ShoppingCartPractice.Controllers
         {
             Session["LoginSuccess"] = "";
             Session["LoginUsr"] = "";
+            Session["LoginUsrId"] = "";
             return RedirectToAction("Index", "Home");
         }
     }

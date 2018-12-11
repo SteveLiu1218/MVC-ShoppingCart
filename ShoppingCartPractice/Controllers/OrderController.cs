@@ -5,16 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingCartPractice.Models;
 using ShoppingCartPractice.Models.Repository;
+using ShoppingCartPractice.Service;
 
 namespace ShoppingCartPractice.Controllers
 {
     public class OrderController : Controller
     {
         private OrderRepository orderRepository;
+        private AccountService accountService;
         // GET: Order
         public OrderController()
         {
             orderRepository = new OrderRepository();
+            accountService = new AccountService();
         }
         public ActionResult Index()
         {
@@ -30,7 +33,7 @@ namespace ShoppingCartPractice.Controllers
                 var currentCart = Service.OperationService.GetCurrentCart();
                 var order = new Order()
                 {
-                    UserId = Guid.NewGuid(),
+                    UserId = (Guid)Session["LoginUsrId"],
                     RecieverName = ship.RecieverName,
                     RecieverPhone = ship.RecieverPhone,
                     RecieverAddress = ship.RecieverAddress

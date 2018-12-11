@@ -30,13 +30,14 @@ namespace ShoppingCartPractice.Service
                              };
             return resultData;
         }
-        public bool CheckAccountData(LoginViewModel loginViewModel,ref string UsrName)
+        public bool CheckAccountData(LoginViewModel loginViewModel,ref string UsrName,ref Guid Id)
         {
             var result = (from s in GetUsers()
                           where loginViewModel.Email == s.Email
                           select s).FirstOrDefault();
             if (result != null)
             {
+                Id = result.Id;
                 UsrName = result.UsrName;
                 return true;
             }
