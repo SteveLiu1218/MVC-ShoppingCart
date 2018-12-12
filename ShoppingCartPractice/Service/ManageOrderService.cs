@@ -31,5 +31,13 @@ namespace ShoppingCartPractice.Service
                              };
             return resultData;
         }
+        public IEnumerable<OrderDetails> GetOrderDetails(int id)
+        {
+            var orderDetailsData = db.OrderDetails.ToList();
+            var resultData = from item in orderDetailsData
+                             where item.OrderId == id
+                             select item;
+            return resultData;
+        }
     }
 }

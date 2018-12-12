@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditMember</h2>
+<h2>編輯會員</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>MemberListViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)

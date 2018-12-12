@@ -5,6 +5,7 @@
 }
 
 <h2>商品列表</h2>
+<h3>@Html.ActionLink("建立商品","Create",new { },new { @class = " btn btn-default" })</h3>
 @if (ViewBag.ResultMessage != null)
 {
     @Html.Label("info", (string)ViewBag.ResultMessage, new { @class = "text-danger" })

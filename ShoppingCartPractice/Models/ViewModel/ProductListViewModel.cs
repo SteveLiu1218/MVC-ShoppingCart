@@ -18,6 +18,7 @@ namespace ShoppingCartPractice.Models.ViewModel
         [Display(Name="商品名稱")]
         public string Name { get; set; }
 
+        [DataType(DataType.Currency)]
         [Required(ErrorMessage = "請填寫商品價格")]
         [Display(Name="商品價格")]
         public int Price { get; set; }
@@ -29,7 +30,8 @@ namespace ShoppingCartPractice.Models.ViewModel
         [Required(ErrorMessage = "請填寫商品群組編號")]
         [Display(Name = "商品群組編號")]
         public int CategoryId { get; set; }
-
+        
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "請填寫建立日期")]
         [Display(Name = "商品建立日期")]
         public DateTime PublishDate { get; set; }
@@ -37,11 +39,12 @@ namespace ShoppingCartPractice.Models.ViewModel
         [Required(ErrorMessage = "請填寫商品圖案編碼")]
         [Display(Name = "商品圖案編碼")]
         public int DefaultImageId { get; set; }
-
+        
         [Required(ErrorMessage = "請填寫商品數量")]
         [Display(Name = "商品數量")]
         public int Quantity { get; set; }
 
+        [DataType(DataType.ImageUrl)]
         [Required(ErrorMessage = "請附上圖片URL")]
         [Display(Name = "圖片URL")]
         public string DefaultImageURL { get; set; }

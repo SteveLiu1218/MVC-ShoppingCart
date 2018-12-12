@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingCartPractice.Service;
 using ShoppingCartPractice.Models.ViewModel;
+using ShoppingCartPractice.Models;
 
 namespace ShoppingCartPractice.Controllers
 {
@@ -21,6 +22,13 @@ namespace ShoppingCartPractice.Controllers
             IEnumerable<ManageOrderViewModel> productListViewModel = new List<ManageOrderViewModel>();
             productListViewModel = manageOrderService.GetManageOrderViewModels().ToList();            
             return View(productListViewModel);            
+        }
+
+        public ActionResult Details(int id)
+        {
+            IEnumerable<OrderDetails> orderDetailsData = new List<OrderDetails>();
+            orderDetailsData = manageOrderService.GetOrderDetails(id);
+            return View(orderDetailsData);
         }
     }
 }
