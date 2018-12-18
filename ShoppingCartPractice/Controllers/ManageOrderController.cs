@@ -20,7 +20,7 @@ namespace ShoppingCartPractice.Controllers
         public ActionResult Index()
         {
             IEnumerable<ManageOrderViewModel> productListViewModel = new List<ManageOrderViewModel>();
-            productListViewModel = manageOrderService.GetManageOrderViewModels().ToList();            
+            productListViewModel = manageOrderService.GetManageOrderViewModels().ToList();
             return View(productListViewModel);            
         }
 

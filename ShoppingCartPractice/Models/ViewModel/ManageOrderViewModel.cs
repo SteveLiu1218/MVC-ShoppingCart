@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ShoppingCartPractice.Models.ViewModel
 {
-    public class ManageOrderViewModel
+    public partial class ManageOrderViewModel
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }

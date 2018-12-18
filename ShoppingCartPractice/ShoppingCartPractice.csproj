@@ -176,6 +176,7 @@
     <Compile Include="Models\Ship.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\ManageOrderPartialClass.cs" />
     <Compile Include="Models\ViewModel\ManageOrderViewModel.cs" />
     <Compile Include="Models\ViewModel\MemberListViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductListViewModel.cs" />
@@ -205,6 +206,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -1,0 +1,47 @@
+﻿@model List<ShoppingCartPractice.Models.Products>
+
+@{
+    ViewBag.Title = "購物首頁";
+}
+<div class="jumbotron">
+    <h2>購物首頁</h2>        
+</div>
+
+<style>
+    .productImg {
+        height: 200px;
+    }
+</style>
+
+<div class="row">
+    @foreach (var product in this.Model)
+    {
+        <div class="col-sm-6 col-sm-4">
+            <img class="productImg" src="@product.DefaultImageURL" alt="@product.Name">
+            <div class="caption">
+                <h3>@product.Name</h3>
+                <p>@product.Description</p>
+                <p>售價:@product.Price</p>
+                <p>庫存:@product.Quantity</p>
+                <p>
+                    @if (Session["LoginSuccess"] == "Success")
+                    {
+                        @* LayOut ajax *@
+                        <a onclick="AddToCart('@product.Id')" href="javascript:void(0);" class="btn btn-primary" role="button">加入購物車</a>
+                    }
+                    else
+                    {
+                        <a onclick="alertFun()" href="javascript:void(0);" class="btn btn-primary" role="button">加入購物車</a>
+                    }
+                    <a href="javascript:void(0);" class="btn btn-default" role="button">詳細資訊</a>
+
+                </p>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    function alertFun() {
+        alert("需要登入才能加入購物車")
+    }
+</script>

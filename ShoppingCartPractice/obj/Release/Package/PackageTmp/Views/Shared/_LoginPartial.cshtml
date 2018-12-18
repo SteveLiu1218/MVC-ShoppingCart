@@ -1,0 +1,11 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    @if (Session["LoginSuccess"] == "Success")
+    {        
+    <li>@Html.ActionLink("Hello "+ Session["LoginUsr"] +" 登出", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoff" })</li>   
+    }
+    else
+    {
+        <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    }
+</ul>
