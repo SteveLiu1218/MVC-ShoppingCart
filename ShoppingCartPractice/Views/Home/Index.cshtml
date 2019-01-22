@@ -27,6 +27,7 @@
                     @if (Session["LoginSuccess"] == "Success")
                     {
                         @* LayOut ajax *@
+                        @* AddToCart jscode 在_Layout.cshtml 做ajax *@
                         <a onclick="AddToCart('@product.Id')" href="javascript:void(0);" class="btn btn-primary" role="button">加入購物車</a>
                     }
                     else
